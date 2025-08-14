@@ -1,3 +1,12 @@
-import { Routes } from '@angular/router';
 
-export const routes: Routes = [];
+import { Routes } from '@angular/router';
+import { Home } from './component/home/home';
+
+export const routes: Routes = [
+    {
+        path: '',
+        component: Home,
+    },
+    { path: '**', redirectTo: '' }
+];
+
