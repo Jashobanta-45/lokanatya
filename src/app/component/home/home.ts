@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 interface Slide {
   title: string;
@@ -12,7 +13,9 @@ interface Slide {
 @Component({
   selector: 'app-home',
   standalone: true, // If using standalone components in Angular 15+
-  imports: [CommonModule],
+  imports: [CommonModule,
+    RouterModule
+  ],
   templateUrl: './home.html',
   styleUrls: ['./home.css']
 })
