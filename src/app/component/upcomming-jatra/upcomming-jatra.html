@@ -1,5 +1,5 @@
 <section class="bg-gradient-to-r from-gray-900 via-indigo-900 to-purple-800 text-white py-20">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+  <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
     <h1 class="text-4xl md:text-6xl font-extrabold mb-6 tracking-wide drop-shadow-lg">
       Upcoming Jatras
     </h1>
@@ -12,160 +12,81 @@ Plan ahead and enjoy unforgettable experiences!
   </div>
 </section>
 
-<section _ngcontent-ng-c2616134462="" class="py-16 bg-gray-50">
-    <div _ngcontent-ng-c2616134462="" class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div _ngcontent-ng-c2616134462="" class="flex flex-col md:flex-row md:items-center md:justify-between mb-12">
-            <div _ngcontent-ng-c2616134462="" class="text-center md:text-left">
-                <h2 _ngcontent-ng-c2616134462="" class="text-3xl md:text-4xl font-bold text-gray-900 mb-2"> Recommended
-                    Jatra For You </h2>
-                <p _ngcontent-ng-c2616134462="" class="text-xl text-gray-600"> Handpicked performances that celebrate
-                    our rich cultural heritage </p>
+<section class="py-16 bg-gray-50">
+    <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div
+            *ngFor="let jatra of jatraList"
+            class="group bg-white rounded-tl-2xl rounded-tr-2xl shadow-md overflow-hidden hover:shadow-2xl transition-all duration-300 relative"
+            >
+            <!-- Promoted Badge -->
+            <div
+                *ngIf="jatra.promoted"
+                class="absolute top-4 left-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-1 rounded-full text-sm font-semibold z-10 shadow-md"
+            >
+                Promoted
+            </div>
+
+            <!-- Availability Badge -->
+            <div
+                [ngClass]="jatra.available
+                ? 'bg-gradient-to-r from-green-500 to-emerald-600 text-white'
+                : 'bg-gradient-to-r from-red-500 to-rose-600 text-white'"
+                class="px-3 py-1 rounded-full text-sm font-medium absolute top-4 right-4 shadow-md z-10"
+            >
+                {{ jatra.available ? 'Available' : 'Not Available' }}
+            </div>
+
+            <!-- Image with hover zoom -->
+            <div class="overflow-hidden relative">
+                <img
+                [src]="jatra.image"
+                [alt]="jatra.title"
+                class="w-full h-64 object-cover object-top transform group-hover:scale-105 transition-transform duration-500"
+                />
+                <div
+                class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                ></div>
+            </div>
+
+            <!-- Content -->
+            <div class="p-4">
+                <h3
+                class="text-lg font-semibold text-gray-900 mb-2 text-center group-hover:text-purple-600 transition-colors"
+                >
+                {{ jatra.title }}, {{ jatra.night }}
+                </h3>
+
+                <p class="text-red-700 font-bold mb-4 text-center">
+                {{ jatra.gananatya }}
+                </p>
+
+                <!-- Info -->
+                <div class="space-y-2 mb-4">
+                <div class="flex items-center text-gray-600 justify-center">
+                    <i class="ri-calendar-line mr-2"></i>
+                    <span class="text-sm">{{ jatra.date }}</span>
+                </div>
+                <div class="flex items-center text-gray-600 justify-center">
+                    <i class="ri-map-pin-line mr-2"></i>
+                    <span class="text-sm">{{ jatra.location }}</span>
+                </div>
+                </div>
+
+                <!-- Button -->
+                <div class="flex items-center justify-center">
+                <button
+                    [disabled]="!jatra.available"
+                    [ngClass]="jatra.available
+                    ? 'bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white shadow-lg hover:shadow-xl'
+                    : 'bg-gray-300 text-gray-500 cursor-not-allowed'"
+                    class="px-4 py-2 rounded-lg font-medium transition-all whitespace-nowrap w-full cursor-pointer"
+                >
+                    {{ jatra.available ? 'Book Ticket' : 'Not Available' }}
+                </button>
+                </div>
+            </div>
             </div>
         </div>
-        <div _ngcontent-ng-c2616134462="" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div _ngcontent-ng-c2616134462=""
-                class="group bg-white rounded-tl-2xl rounded-tr-2xl shadow-md overflow-hidden hover:shadow-2xl transition-all duration-300 relative">
-                <div _ngcontent-ng-c2616134462=""
-                    class="absolute top-4 left-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-1 rounded-full text-sm font-semibold z-10 shadow-md">
-                    Promoted </div><!--container-->
-                <div _ngcontent-ng-c2616134462=""
-                    class="px-3 py-1 rounded-full text-sm font-medium absolute top-4 right-4 shadow-md z-10 bg-gradient-to-r from-green-500 to-emerald-600 text-white">
-                    Available </div>
-                <div _ngcontent-ng-c2616134462="" class="overflow-hidden relative"><img _ngcontent-ng-c2616134462=""
-                        class="w-full h-64 object-cover object-top transform group-hover:scale-105 transition-transform duration-500"
-                        src="https://readdy.ai/api/search-image?query=Traditional%20Ramayana%20theater%20poster%20with%20ornate%20golden%20border%2C%20classical%20Indian%20art%20style%2C%20vibrant%20colors%2C%20cultural%20motifs%2C%20elegant%20typography%2C%20theatrical%20promotional%20design&amp;width=300&amp;height=400&amp;seq=show1&amp;orientation=portrait"
-                        alt="Panatkani">
-                    <div _ngcontent-ng-c2616134462=""
-                        class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    </div>
-                </div>
-                <div _ngcontent-ng-c2616134462="" class="p-4">
-                    <h3 _ngcontent-ng-c2616134462=""
-                        class="text-lg font-semibold text-gray-900 mb-2 text-center group-hover:text-purple-600 transition-colors">
-                        Panatkani, 1st Night </h3>
-                    <p _ngcontent-ng-c2616134462="" class="text-red-700 font-bold mb-4 text-center"> Opera Suryamandir
-                    </p>
-                    <div _ngcontent-ng-c2616134462="" class="space-y-2 mb-4">
-                        <div _ngcontent-ng-c2616134462="" class="flex items-center text-gray-600 justify-center"><i
-                                _ngcontent-ng-c2616134462="" class="ri-calendar-line mr-2"></i><span
-                                _ngcontent-ng-c2616134462="" class="text-sm">Aug 14 2025 Thursday</span></div>
-                        <div _ngcontent-ng-c2616134462="" class="flex items-center text-gray-600 justify-center"><i
-                                _ngcontent-ng-c2616134462="" class="ri-map-pin-line mr-2"></i><span
-                                _ngcontent-ng-c2616134462="" class="text-sm">Grand Cultural Center</span></div>
-                    </div>
-                    <div _ngcontent-ng-c2616134462="" class="flex items-center justify-center"><button
-                            _ngcontent-ng-c2616134462=""
-                            class="px-4 py-2 rounded-lg font-medium transition-all whitespace-nowrap w-full cursor-pointer bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white shadow-lg hover:shadow-xl">
-                            Book Ticket </button></div>
-                </div>
-            </div>
-            <div _ngcontent-ng-c2616134462=""
-                class="group bg-white rounded-tl-2xl rounded-tr-2xl shadow-md overflow-hidden hover:shadow-2xl transition-all duration-300 relative">
-                <!--container-->
-                <div _ngcontent-ng-c2616134462=""
-                    class="px-3 py-1 rounded-full text-sm font-medium absolute top-4 right-4 shadow-md z-10 bg-gradient-to-r from-green-500 to-emerald-600 text-white">
-                    Available </div>
-                <div _ngcontent-ng-c2616134462="" class="overflow-hidden relative"><img _ngcontent-ng-c2616134462=""
-                        class="w-full h-64 object-cover object-top transform group-hover:scale-105 transition-transform duration-500"
-                        src="https://readdy.ai/api/search-image?query=Mahabharata%20theater%20promotional%20poster%20with%20warrior%20motifs%2C%20epic%20battle%20scenes%2C%20rich%20colors%2C%20traditional%20Indian%20artwork%2C%20dramatic%20composition%2C%20cultural%20heritage%20design&amp;width=300&amp;height=400&amp;seq=show2&amp;orientation=portrait"
-                        alt="Badanam galira badsha">
-                    <div _ngcontent-ng-c2616134462=""
-                        class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    </div>
-                </div>
-                <div _ngcontent-ng-c2616134462="" class="p-4">
-                    <h3 _ngcontent-ng-c2616134462=""
-                        class="text-lg font-semibold text-gray-900 mb-2 text-center group-hover:text-purple-600 transition-colors">
-                        Badanam galira badsha, 2nd Night </h3>
-                    <p _ngcontent-ng-c2616134462="" class="text-red-700 font-bold mb-4 text-center"> Jtra Shree
-                        Biswadarabar </p>
-                    <div _ngcontent-ng-c2616134462="" class="space-y-2 mb-4">
-                        <div _ngcontent-ng-c2616134462="" class="flex items-center text-gray-600 justify-center"><i
-                                _ngcontent-ng-c2616134462="" class="ri-calendar-line mr-2"></i><span
-                                _ngcontent-ng-c2616134462="" class="text-sm">Aug 14 2025 Thursday</span></div>
-                        <div _ngcontent-ng-c2616134462="" class="flex items-center text-gray-600 justify-center"><i
-                                _ngcontent-ng-c2616134462="" class="ri-map-pin-line mr-2"></i><span
-                                _ngcontent-ng-c2616134462="" class="text-sm">Regional Arts Theater</span></div>
-                    </div>
-                    <div _ngcontent-ng-c2616134462="" class="flex items-center justify-center"><button
-                            _ngcontent-ng-c2616134462=""
-                            class="px-4 py-2 rounded-lg font-medium transition-all whitespace-nowrap w-full cursor-pointer bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white shadow-lg hover:shadow-xl">
-                            Book Ticket </button></div>
-                </div>
-            </div>
-            <div _ngcontent-ng-c2616134462=""
-                class="group bg-white rounded-tl-2xl rounded-tr-2xl shadow-md overflow-hidden hover:shadow-2xl transition-all duration-300 relative">
-                <div _ngcontent-ng-c2616134462=""
-                    class="absolute top-4 left-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-1 rounded-full text-sm font-semibold z-10 shadow-md">
-                    Promoted </div><!--container-->
-                <div _ngcontent-ng-c2616134462=""
-                    class="px-3 py-1 rounded-full text-sm font-medium absolute top-4 right-4 shadow-md z-10 bg-gradient-to-r from-green-500 to-emerald-600 text-white">
-                    Available </div>
-                <div _ngcontent-ng-c2616134462="" class="overflow-hidden relative"><img _ngcontent-ng-c2616134462=""
-                        class="w-full h-64 object-cover object-top transform group-hover:scale-105 transition-transform duration-500"
-                        src="https://readdy.ai/api/search-image?query=Goddess%20Durga%20theater%20poster%20with%20divine%20imagery%2C%20ornate%20decorations%2C%20spiritual%20symbols%2C%20vibrant%20festival%20colors%2C%20traditional%20art%20style%2C%20cultural%20celebration%20theme&amp;width=300&amp;height=400&amp;seq=show3&amp;orientation=portrait"
-                        alt="Na Anka Durbhikhya">
-                    <div _ngcontent-ng-c2616134462=""
-                        class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    </div>
-                </div>
-                <div _ngcontent-ng-c2616134462="" class="p-4">
-                    <h3 _ngcontent-ng-c2616134462=""
-                        class="text-lg font-semibold text-gray-900 mb-2 text-center group-hover:text-purple-600 transition-colors">
-                        Na Anka Durbhikhya, 3rd Night </h3>
-                    <p _ngcontent-ng-c2616134462="" class="text-red-700 font-bold mb-4 text-center"> Jatra Durga Mandir
-                    </p>
-                    <div _ngcontent-ng-c2616134462="" class="space-y-2 mb-4">
-                        <div _ngcontent-ng-c2616134462="" class="flex items-center text-gray-600 justify-center"><i
-                                _ngcontent-ng-c2616134462="" class="ri-calendar-line mr-2"></i><span
-                                _ngcontent-ng-c2616134462="" class="text-sm">Aug 14 2025 Thursday</span></div>
-                        <div _ngcontent-ng-c2616134462="" class="flex items-center text-gray-600 justify-center"><i
-                                _ngcontent-ng-c2616134462="" class="ri-map-pin-line mr-2"></i><span
-                                _ngcontent-ng-c2616134462="" class="text-sm">Community Arts Hall</span></div>
-                    </div>
-                    <div _ngcontent-ng-c2616134462="" class="flex items-center justify-center"><button
-                            _ngcontent-ng-c2616134462=""
-                            class="px-4 py-2 rounded-lg font-medium transition-all whitespace-nowrap w-full cursor-pointer bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white shadow-lg hover:shadow-xl">
-                            Book Ticket </button></div>
-                </div>
-            </div>
-            <div _ngcontent-ng-c2616134462=""
-                class="group bg-white rounded-tl-2xl rounded-tr-2xl shadow-md overflow-hidden hover:shadow-2xl transition-all duration-300 relative">
-                <!--container-->
-                <div _ngcontent-ng-c2616134462=""
-                    class="px-3 py-1 rounded-full text-sm font-medium absolute top-4 right-4 shadow-md z-10 bg-gradient-to-r from-red-500 to-rose-600 text-white">
-                    Not Available </div>
-                <div _ngcontent-ng-c2616134462="" class="overflow-hidden relative"><img _ngcontent-ng-c2616134462=""
-                        class="w-full h-64 object-cover object-top transform group-hover:scale-105 transition-transform duration-500"
-                        src="https://readdy.ai/api/search-image?query=Krishna%20Leela%20theater%20poster%20with%20peacock%20feathers%2C%20flute%20imagery%2C%20pastoral%20scenes%2C%20blue%20and%20gold%20colors%2C%20devotional%20art%20style%2C%20classical%20Indian%20theatrical%20design&amp;width=300&amp;height=400&amp;seq=show4&amp;orientation=portrait"
-                        alt="Kati Kati Double Kati">
-                    <div _ngcontent-ng-c2616134462=""
-                        class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    </div>
-                </div>
-                <div _ngcontent-ng-c2616134462="" class="p-4">
-                    <h3 _ngcontent-ng-c2616134462=""
-                        class="text-lg font-semibold text-gray-900 mb-2 text-center group-hover:text-purple-600 transition-colors">
-                        Kati Kati Double Kati, 4th Night </h3>
-                    <p _ngcontent-ng-c2616134462="" class="text-red-700 font-bold mb-4 text-center"> Jatra Indrabhuban
-                    </p>
-                    <div _ngcontent-ng-c2616134462="" class="space-y-2 mb-4">
-                        <div _ngcontent-ng-c2616134462="" class="flex items-center text-gray-600 justify-center"><i
-                                _ngcontent-ng-c2616134462="" class="ri-calendar-line mr-2"></i><span
-                                _ngcontent-ng-c2616134462="" class="text-sm">Aug 14 2025 Thursday</span></div>
-                        <div _ngcontent-ng-c2616134462="" class="flex items-center text-gray-600 justify-center"><i
-                                _ngcontent-ng-c2616134462="" class="ri-map-pin-line mr-2"></i><span
-                                _ngcontent-ng-c2616134462="" class="text-sm">Heritage Theater</span></div>
-                    </div>
-                    <div _ngcontent-ng-c2616134462="" class="flex items-center justify-center"><button
-                            _ngcontent-ng-c2616134462=""
-                            class="px-4 py-2 rounded-lg font-medium transition-all whitespace-nowrap w-full cursor-pointer bg-gray-300 text-gray-500 cursor-not-allowed"
-                            disabled=""> Not Available </button></div>
-                </div>
-            </div><!--container-->
-        </div>
-        <div _ngcontent-ng-c2616134462="" class="mt-8 text-center md:hidden"><a _ngcontent-ng-c2616134462="" href="#"
-                class="px-4 py-2 rounded-lg font-medium transition-all whitespace-nowrap bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white shadow-lg hover:shadow-xl">
-                See All </a></div>
     </div>
 </section>

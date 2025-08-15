@@ -1,0 +1,36 @@
+<div class="mb-8">
+    <!-- Curved Screen -->
+    <div class="w-11/12 mx-auto mt-8 mb-10 flex justify-center">
+    <div class="bg-gradient-to-b from-white to-gray-400 w-full h-14 rounded-b-[110px] shadow-lg flex items-center justify-center text-gray-800 text-2xl font-bold tracking-widest">
+        SCREEN
+    </div>
+    </div>
+
+    <div class="flex flex-col items-center gap-6 mt-8 w-full px-2">
+    <h2 class="text-2xl font-bold">Section D (Per row 20 seats)</h2>
+
+    <ng-container *ngFor="let row of seats; let rowIndex = index">
+        
+        <!-- Gap after D5 -->
+        <div *ngIf="rowIndex === 5" class="w-full border-t border-gray-400 my-4"></div>
+
+        <!-- Row -->
+        <div class="w-full flex flex-col sm:flex-row sm:items-center gap-2 mb-2 justify-center ">
+        
+        <!-- Row label -->
+        <span class="sm:w-12 w-full sm:text-center font-semibold text-lg">{{ rows[rowIndex] }}</span>
+
+        <!-- Seats wrapper -->
+        <div class="flex flex-wrap gap-1">
+            <span *ngFor="let seat of row; let seatIndex = index"
+                class="w-9 h-9 rounded flex items-center justify-center font-bold shadow seat text-white cursor-pointer text-sm sm:text-base"
+                [ngClass]="getSeatClass(seat)"
+                (click)="toggleSeat(rowIndex, seatIndex)">
+            {{ seatIndex + 1 }}
+            </span>
+        </div>
+        </div>
+    </ng-container>
+    </div>
+</div>
+

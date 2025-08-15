@@ -7,6 +7,7 @@ import { UpcommingJatra } from './component/upcomming-jatra/upcomming-jatra';
 import { About } from './component/about/about';
 import { Conctact } from './component/conctact/conctact';
 import { Todayshow } from './component/todayshow/todayshow';
+import { SeatSection } from './component/seat-section/seat-section';
 
 
 export const routes: Routes = [
@@ -21,6 +22,7 @@ export const routes: Routes = [
       {path:'upcomming',component:UpcommingJatra},
       {path:'about',component:About},
       {path:'contact',component:Conctact},
+      {path:'seat-section',component:SeatSection},
 
     { path: '**', redirectTo: '' }
 ];
