@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-jatra-ticket',
+  selector: 'app-book-ticket',
   imports: [],
-  templateUrl: './jatra-ticket.html',
-  styleUrl: './jatra-ticket.css'
+  templateUrl: './book-ticket.html',
+  styleUrl: './book-ticket.css'
 })
 export class JatraTicket {
 
