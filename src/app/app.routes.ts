@@ -6,6 +6,7 @@ import { JatraTicket } from './component/jatra-ticket/jatra-ticket';
 import { UpcommingJatra } from './component/upcomming-jatra/upcomming-jatra';
 import { About } from './component/about/about';
 import { Conctact } from './component/conctact/conctact';
+import { Todayshow } from './component/todayshow/todayshow';
 
 
 export const routes: Routes = [
@@ -16,6 +17,7 @@ export const routes: Routes = [
     },
       { path:'register',component:RegisterPage},
       {path:'jatra-ticket',component:JatraTicket},
+      {path: 'today-show',component:Todayshow},
       {path:'upcomming',component:UpcommingJatra},
       {path:'about',component:About},
       {path:'contact',component:Conctact},
