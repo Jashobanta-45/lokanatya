@@ -1,18 +1,40 @@
-<header class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex justify-between items-center h-16">
-                        <div class="flex items-center"><a class="text-2xl font-['Pacifico'] text-purple-600"
-                                        href="/preview/989ffb59-a43a-46b9-acee-a3225dc52032/1755085">logo</a></div>
-                        <nav class="hidden md:flex space-x-8"><a
-                                        class="text-gray-700 hover:text-purple-600 transition-colors whitespace-nowrap cursor-pointer">Home</a><a
-                                        class="text-gray-700 hover:text-purple-600 transition-colors whitespace-nowrap cursor-pointer">AUpcoming Shows</a><a
-                                        class="text-gray-700 hover:text-purple-600 transition-colors whitespace-nowrap cursor-pointer">Past Productions</a><a
-                                        class="text-gray-700 hover:text-purple-600 transition-colors whitespace-nowrap cursor-pointer">Jatra</a><a
-                                        class="text-gray-700 hover:text-purple-600 transition-colors whitespace-nowrap cursor-pointer">Book a Show</a><a
-                                        class="text-gray-700 hover:text-purple-600 transition-colors whitespace-nowrap cursor-pointer">Contact
-                                        Us</a></nav>
-                        <button class="md:hidden w-6 h-6 flex items-center justify-center cursor-pointer"><i
-                                        class="ri-menu-line text-xl"></i></button>
-                </div>
-        </div>
+<header class="bg-black shadow-sm sticky top-0 z-50">
+  <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+
+      <!-- Logo (Left) -->
+      <div class="flex items-center flex-shrink-0">
+        <a class="text-2xl font-['Pacifico'] text-white hover:text-gray-300 transition-all" href="#">
+          logo
+        </a>
+      </div>
+
+      <!-- Navigation (Center) -->
+      <nav class="hidden md:flex space-x-8 absolute left-1/2 transform -translate-x-1/2">
+        <a class="text-white hover:text-white transition-colors font-medium whitespace-nowrap cursor-pointer">Home</a>
+        <a class="text-white hover:text-white transition-colors font-medium whitespace-nowrap cursor-pointer">Upcoming Shows</a>
+        <a class="text-white hover:text-white transition-colors font-medium whitespace-nowrap cursor-pointer">Past Productions</a>
+        <a class="text-white hover:text-white transition-colors font-medium whitespace-nowrap cursor-pointer">Jatra</a>
+        <a class="text-white hover:text-white transition-colors font-medium whitespace-nowrap cursor-pointer">Book a Show</a>
+        <a class="text-white hover:text-white transition-colors font-medium whitespace-nowrap cursor-pointer">Contact Us</a>
+      </nav>
+
+      <!-- Auth Buttons (Right) -->
+      <div class="hidden md:flex space-x-4">
+        <a href="#"
+           class="px-4 py-2 rounded-lg font-medium transition-all whitespace-nowrap bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white shadow-lg hover:shadow-xl">
+          Sign In
+        </a>
+        <a href="#"
+           class="px-4 py-2 rounded-lg font-medium transition-all whitespace-nowrap bg-gradient-to-r from-pink-500 to-red-500 hover:from-pink-600 hover:to-red-600 text-white shadow-lg hover:shadow-xl">
+          Sign Up
+        </a>
+      </div>
+
+      <!-- Mobile Menu Icon -->
+      <button class="md:hidden w-6 h-6 flex items-center justify-center cursor-pointer text-white">
+        <i class="ri-menu-line text-xl"></i>
+      </button>
+    </div>
+  </div>
 </header>
