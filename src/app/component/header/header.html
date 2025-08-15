@@ -11,7 +11,7 @@
 
       <!-- Navigation (Center) -->
       <nav class="hidden md:flex space-x-8 absolute left-1/2 transform -translate-x-1/2">
-        <a class="text-white hover:text-white transition-colors font-medium whitespace-nowrap cursor-pointer">Home</a>
+        <a class="text-white hover:text-white transition-colors font-medium whitespace-nowrap cursor-pointer"routerLink="/">Home</a>
         <a class="text-white hover:text-white transition-colors font-medium whitespace-nowrap cursor-pointer" routerLink="/about">About</a>
         <a class="text-white hover:text-white transition-colors font-medium whitespace-nowrap cursor-pointer" routerLink="/today-show">Today Show</a>
         <a class="text-white hover:text-white transition-colors font-medium whitespace-nowrap cursor-pointer" routerLink="/upcomming">Upcoming Shows</a>
@@ -21,12 +21,8 @@
       <!-- Auth Buttons (Right) -->
       <div class="hidden md:flex space-x-4">
         <a href="#"
-           class="px-4 py-2 rounded-lg font-medium transition-all whitespace-nowrap bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white shadow-lg hover:shadow-xl">
-          Sign In
-        </a>
-        <a href="#"
-           class="px-4 py-2 rounded-lg font-medium transition-all whitespace-nowrap bg-gradient-to-r from-pink-500 to-red-500 hover:from-pink-600 hover:to-red-600 text-white shadow-lg hover:shadow-xl">
-          Sign Up
+           class="px-4 py-2 rounded-lg font-medium transition-all whitespace-nowrap bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white shadow-lg hover:shadow-xl" routerLink="register">
+          Log In
         </a>
       </div>
 
