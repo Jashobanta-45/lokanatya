@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component} from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Register } from './register-service';
 
 @Component({
   selector: 'app-register-page',
@@ -19,7 +20,8 @@ export class RegisterPage  {
 
   constructor(
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private auth:Register
   ) {
     this.loginForm = this.fb.group({
       phone: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
@@ -54,10 +56,24 @@ export class RegisterPage  {
     if (phone === '1111111111' && otp === '12345') {
       // ✅ Login success
       alert('Login Success!');
-      this.router.navigate(['/home']);
+      this.router.navigate(['/my-account']);
     } else {
       alert('Invalid phone or OTP. Default: 1111111111 / 12345');
     }
   }
+  loginSuccess(userPhone: string) {
+  // Save phone number to localStorage
+  localStorage.setItem('userPhone', userPhone);
+    this.auth.login('1111111111'); // default phone for now
+  this.router.navigate(['/my-account']);
+
+  // Redirect to My Account page
+  this.router.navigate(['/my-account']);
+    localStorage.setItem('isLoggedIn', 'true');
+
+  // Navigate to account page (optional)
+  this.router.navigate(['/my-account']);
+}
+
 }
 

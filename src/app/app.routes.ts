@@ -27,6 +27,7 @@ export const routes: Routes = [
       {path:'party-details/:id',component:PartyDetails},
       {path:'our-mission',component:OurMission},
       {path:'contact',component:Conctact},
+      {path:'registor',component:RegisterPage},
       {path:'payment',component:Payment},
     { path: '**', redirectTo: '' },
 ];
