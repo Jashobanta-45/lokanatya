@@ -1,35 +1,270 @@
-<header class="bg-black shadow-sm sticky top-0 z-50">
+<header class="bg-black shadow-md sticky top-0 z-50">
   <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
 
-      <!-- Logo (Left) -->
+      <!-- Logo -->
       <div class="flex items-center flex-shrink-0">
-        <a class="text-2xl font-['Pacifico'] text-white hover:text-gray-300 transition-all" href="#">
-          logo
+        <a routerLink="/" class="text-2xl font-pacifico text-white hover:text-purple-400 transition-colors">
+          Logo
         </a>
       </div>
 
-      <!-- Navigation (Center) -->
+      <!-- Desktop Navigation -->
       <nav class="hidden md:flex space-x-8 absolute left-1/2 transform -translate-x-1/2">
-        <a class="text-white hover:text-white transition-colors font-medium whitespace-nowrap cursor-pointer"routerLink="/">Home</a>
-        <a class="text-white hover:text-white transition-colors font-medium whitespace-nowrap cursor-pointer" routerLink="/today-show">Today Show</a>
-        <a class="text-white hover:text-white transition-colors font-medium whitespace-nowrap cursor-pointer" routerLink="/upcomming">Upcoming Shows</a>
-        <a class="text-white hover:text-white transition-colors font-medium whitespace-nowrap cursor-pointer" routerLink="/our-mission">Our Mission</a>
-        <a class="text-white hover:text-white transition-colors font-medium whitespace-nowrap cursor-pointer" routerLink="/contact">Contact Us</a>
+        <a routerLink="/" routerLinkActive="border-b" [routerLinkActiveOptions]="{ exact: true }"
+          class="text-white hover:text-white transition-colors font-medium whitespace-nowrap cursor-pointer">Home</a>
+        <a routerLink="/today-show" routerLinkActive="border-b" class="text-white hover:text-white transition-colors font-medium whitespace-nowrap cursor-pointer">Today Show</a>
+        <a routerLink="/upcomming-show" routerLinkActive="border-b" class="text-white hover:text-white transition-colors font-medium whitespace-nowrap cursor-pointer">Upcoming Shows</a>
+        <a routerLink="/all-party" routerLinkActive="border-b" class="text-white hover:text-white transition-colors font-medium whitespace-nowrap cursor-pointer">All Shows</a>
+        <a routerLink="/our-mission" routerLinkActive="border-b" class="text-white hover:text-white transition-colors font-medium whitespace-nowrap cursor-pointer">Our Mission</a>
+        <a routerLink="/contact" routerLinkActive="border-b" class="text-white hover:text-white transition-colors font-medium whitespace-nowrap cursor-pointer">Contact Us</a>
       </nav>
 
-      <!-- Auth Buttons (Right) -->
-      <div class="hidden md:flex space-x-4">
-        <a href="#"
-           class="px-4 py-2 rounded-lg font-medium transition-all whitespace-nowrap bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white shadow-lg hover:shadow-xl" routerLink="register">
+      <!-- Desktop Location & Login -->
+      <div class="hidden md:flex items-center space-x-4">
+        <!-- Location Icon -->
+        <button (click)="openLocationPopup()"
+                class="flex items-center gap-1 text-white font-medium text-sm hover:text-purple-400 transition">
+          <i class="ri-map-pin-line text-lg"></i>
+          <span>{{ currentLocation }}</span>
+        </button>
+
+        <!-- Log In Button -->
+        <a routerLink="register"
+           class="px-5 py-2 rounded-xl font-semibold transition-all bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white shadow-md hover:shadow-lg">
           Log In
         </a>
       </div>
-
-      <!-- Mobile Menu Icon -->
-      <button class="md:hidden w-6 h-6 flex items-center justify-center cursor-pointer text-white">
-        <i class="ri-menu-line text-xl"></i>
-      </button>
+      <div class="md:hidden flex items-center space-x-4">
+        <!-- Location Icon -->
+        <button (click)="openLocationPopup()"
+                class="flex items-center gap-1 text-white font-medium text-sm hover:text-purple-400 transition">
+          <i class="ri-map-pin-line text-lg"></i>
+          <span>{{ currentLocation }}</span>
+        </button>
+      </div>
     </div>
   </div>
 </header>
+
+<!-- Location Permission Popup -->
+<div *ngIf="showLocationPopup"
+     class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
+  <div class="bg-white rounded-xl p-6 max-w-sm w-full text-center shadow-lg">
+    <h2 class="text-xl font-bold mb-4">Allow Location Access</h2>
+    <p class="mb-6">We need your location to show nearby events and relevant info.</p>
+    <div class="flex justify-center gap-4">
+      <button (click)="allowLocation()"
+              class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition">
+        Allow
+      </button>
+      <button (click)="denyLocation()"
+              class="px-4 py-2 bg-gray-300 text-black rounded-lg hover:bg-gray-400 transition">
+        Deny
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Main menu -->
+<main class="min-h-screen md:p-8 fixed inset-0 z-50 flex flex-col transform transition-all duration-700 ease-in-out bg-white"
+  [ngClass]="{ 'translate-x-0 opacity-100': isMainMenuOpen, 'translate-x-full opacity-0': !isMainMenuOpen }">
+
+  <!-- Menu Items -->
+  <ul class="space-y-3 px-4 mt-6 pb-[80px] overflow-y-auto">
+    <li>
+      <a routerLink="/" routerLinkActive="bg-purple-700"
+         [routerLinkActiveOptions]="{ exact: true }"
+         (click)="isMainMenuOpen = false"
+         class="flex items-center justify-between bg-white rounded-xl shadow-sm p-4 hover:shadow-md transition duration-300">
+        <div class="flex items-center space-x-4">
+          <i class="ri-home-2-line text-2xl text-purple-600"></i>
+          <span class="text-gray-800 font-medium">Home</span>
+        </div>
+      </a>
+    </li>
+
+    <li>
+      <a routerLink="/today-show" routerLinkActive="bg-purple-700"
+         (click)="isMainMenuOpen = false"
+         class="flex items-center justify-between bg-white rounded-xl shadow-sm p-4 hover:shadow-md transition duration-300">
+        <div class="flex items-center space-x-4">
+          <i class="ri-calendar-2-line text-2xl text-purple-600"></i>
+          <span class="text-gray-800 font-medium">Today Show</span>
+        </div>
+      </a>
+    </li>
+
+    <li>
+      <a routerLink="/upcomming-show" routerLinkActive="bg-purple-700"
+         (click)="isMainMenuOpen = false"
+         class="flex items-center justify-between bg-white rounded-xl shadow-sm p-4 hover:shadow-md transition duration-300">
+        <div class="flex items-center space-x-4">
+          <i class="ri-time-line text-2xl text-purple-600"></i>
+          <span class="text-gray-800 font-medium">Upcoming Shows</span>
+        </div>
+      </a>
+    </li>
+
+    <li>
+      <a routerLink="/all-party" routerLinkActive="bg-purple-700"
+         (click)="isMainMenuOpen = false"
+         class="flex items-center justify-between bg-white rounded-xl shadow-sm p-4 hover:shadow-md transition duration-300">
+        <div class="flex items-center space-x-4">
+          <i class="ri-music-2-line text-2xl text-purple-600"></i>
+          <span class="text-gray-800 font-medium">All Shows</span>
+        </div>
+      </a>
+    </li>
+
+    <li>
+      <a routerLink="/our-mission" routerLinkActive="bg-purple-700"
+         (click)="isMainMenuOpen = false"
+         class="flex items-center justify-between bg-white rounded-xl shadow-sm p-4 hover:shadow-md transition duration-300">
+        <div class="flex items-center space-x-4">
+          <i class="ri-flag-line text-2xl text-purple-600"></i>
+          <span class="text-gray-800 font-medium">Our Mission</span>
+        </div>
+      </a>
+    </li>
+
+    <li>
+      <a routerLink="/contact" routerLinkActive="bg-purple-700"
+         (click)="isMainMenuOpen = false"
+         class="flex items-center justify-between bg-white rounded-xl shadow-sm p-4 hover:shadow-md transition duration-300">
+        <div class="flex items-center space-x-4">
+          <i class="ri-phone-line text-2xl text-purple-600"></i>
+          <span class="text-gray-800 font-medium">Contact Us</span>
+        </div>
+      </a>
+    </li>
+  </ul>
+</main>
+
+
+<!-- User Menu -->
+<main class="min-h-screen md:p-8 fixed inset-0 z-50 flex flex-col transform transition-all duration-700 ease-in-out bg-white"
+  [ngClass]="{ 'translate-x-0 opacity-100': isMenuOpen, 'translate-x-full opacity-0': !isMenuOpen }">
+
+  <!-- Profile Header -->
+  <div class="profile-header bg-white rounded-xl shadow-md p-6 flex flex-row items-center text-center mb-6 gap-3">
+    <!-- Profile Icon -->
+    <div class="w-16 h-16 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center">
+      <i class="ri-user-line text-3xl"></i>
+    </div>
+
+    <div class="flex-1 text-start">
+      <h3 class="text-xl font-bold text-gray-900">Darron Banks</h3>
+      <span class="text-sm text-gray-500 mt-1">darronbanks@mail.com</span>
+    </div>
+  </div>
+
+  <!-- Profile Menu -->
+  <ul class="space-y-3 px-4 pb-[80px] overflow-y-auto">
+
+    <!-- Menu Item -->
+    <li>
+      <a href="/edit-profile" class="flex items-center justify-between bg-white rounded-xl shadow-sm p-4 hover:shadow-md transition duration-300">
+        <div class="flex items-center space-x-4">
+          <i class="ri-user-line text-2xl text-gray-600"></i>
+          <h5 class="text-gray-800 font-medium">Personal info</h5>
+        </div>
+        <i class="ri-arrow-right-s-line text-lg text-gray-400"></i>
+      </a>
+    </li>
+
+    <li>
+      <a href="/order-history" class="flex items-center justify-between bg-white rounded-xl shadow-sm p-4 hover:shadow-md transition duration-300">
+        <div class="flex items-center space-x-4">
+          <i class="ri-calendar-line text-2xl text-gray-600"></i>
+          <h5 class="text-gray-800 font-medium">Order history</h5>
+        </div>
+        <i class="ri-arrow-right-s-line text-lg text-gray-400"></i>
+      </a>
+    </li>
+
+    <li>
+      <a href="/my-promocodes" class="flex items-center justify-between bg-white rounded-xl shadow-sm p-4 hover:shadow-md transition duration-300">
+        <div class="flex items-center space-x-4">
+          <i class="ri-gift-line text-2xl text-gray-600"></i>
+          <h5 class="text-gray-800 font-medium">My promocodes</h5>
+        </div>
+        <i class="ri-arrow-right-s-line text-lg text-gray-400"></i>
+      </a>
+    </li>
+
+    <li>
+      <a href="/verify-your-phone-number" class="flex items-center justify-between bg-white rounded-xl shadow-sm p-4 hover:shadow-md transition duration-300">
+        <div class="flex items-center space-x-4">
+          <i class="ri-smartphone-line text-2xl text-orange-500"></i>
+          <h5 class="text-orange-500 font-medium">Verify phone number</h5>
+        </div>
+        <i class="ri-arrow-right-s-line text-lg text-gray-400"></i>
+      </a>
+    </li>
+
+    <li>
+      <a href="/verify-your-email" class="flex items-center justify-between bg-white rounded-xl shadow-sm p-4 hover:shadow-md transition duration-300">
+        <div class="flex items-center space-x-4">
+          <i class="ri-mail-line text-2xl text-orange-500"></i>
+          <h5 class="text-orange-500 font-medium">Verify email</h5>
+        </div>
+        <i class="ri-arrow-right-s-line text-lg text-gray-400"></i>
+      </a>
+    </li>
+
+    <li>
+      <a href="/sign-out" class="flex items-center justify-between bg-white rounded-xl shadow-sm p-4 hover:shadow-md transition duration-300">
+        <div class="flex items-center space-x-4">
+          <i class="ri-logout-box-line text-2xl text-gray-600"></i>
+          <h5 class="text-gray-800 font-medium">Sign out</h5>
+        </div>
+        <i class="ri-arrow-right-s-line text-lg text-gray-400"></i>
+      </a>
+    </li>
+
+    <li>
+      <a href="/" class="flex items-center justify-between bg-white rounded-xl shadow-sm p-4 hover:shadow-md transition duration-300">
+        <div class="flex items-center space-x-4">
+          <i class="ri-delete-bin-line text-2xl text-orange-500"></i>
+          <h5 class="text-orange-500 font-medium">Delete account</h5>
+        </div>
+      </a>
+    </li>
+
+  </ul>
+</main>
+
+<!-- Mobile Bottom Navigation -->
+<div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-300 shadow-md md:hidden z-50">
+  <ul class="flex justify-between items-center">
+    <!-- Home -->
+    <li class="flex-1">
+      <a href="/multikart-frontend/" class="flex flex-col items-center justify-center py-2 text-gray-600 hover:text-purple-600">
+        <i class="ri-home-2-line text-2xl text-purple-600"></i>
+        <span class="text-xs mt-1">Home</span>
+      </a>
+    </li>
+    <li class="flex-1">
+      <!--today-show-->
+      <a href="/today-show"  class="flex flex-col items-center justify-center py-2 text-gray-600 hover:text-purple-600">
+        <i class="ri-ticket-2-line text-2xl text-purple-600"></i>
+        <span class="text-xs mt-1">Today Show</span>
+      </a>
+    </li>
+    <!-- User -->
+    <li class="flex-1">
+      <div (click)="toggleUserMenu()" class="flex flex-col items-center justify-center py-2 text-gray-600 hover:text-purple-600">
+        <i class="ri-user-line text-2xl text-purple-600"></i>
+        <span class="text-xs mt-1">User</span>
+      </div>
+    </li>
+    <!-- Menu  -->
+    <li class="flex-1">
+      <div (click)="toggleMainMenu()" class="flex flex-col items-center justify-center py-2 text-gray-600 hover:text-purple-600">
+        <i class="ri-menu-line text-2xl text-purple-600"></i>
+        <span class="text-xs mt-1">Menu</span>
+      </div>
+    </li>
+  </ul>
+</div>

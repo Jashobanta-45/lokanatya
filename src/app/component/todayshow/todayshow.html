@@ -1,29 +1,45 @@
 <div class="min-h-screen bg-white">
-  <!-- Header Section -->
+
+  <!-- Header -->
   <section class="bg-gradient-to-r from-purple-900 via-purple-800 to-pink-800 text-white py-20">
     <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h1 class="text-4xl md:text-6xl font-bold mb-6">Today's Jatras</h1>
       <p class="text-xl md:text-2xl text-purple-100 max-w-3xl mx-auto">
         Discover extraordinary performances that celebrate our rich cultural heritage.
-        Book your tickets now for unforgettable theatrical experiences.
       </p>
     </div>
   </section>
+  <section class="py-16 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+
+  <!-- Open Filter Modal Button -->
+  <button (click)="toggleFilter()"
+          class="flex items-center justify-center space-x-2 bg-gradient-to-r from-purple-700 to-pink-600 hover:from-purple-800 hover:to-pink-700 text-white font-semibold px-5 py-3 rounded-xl shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-2xl w-full md:w-auto">
+    <i class="ri-filter-3-line text-lg"></i>
+    <span>Filter Shows</span>
+  </button>
+
+  <!-- Sort By Dropdown -->
+  <div class="items-center space-x-3 w-full md:w-auto mt-4 md:mt-0 hidden md:flex">
+    <label for="sortBy" class="text-gray-700 font-medium">Sort By:</label>
+    <select id="sortBy" class="bg-white border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent w-full md:w-48">
+      <option value="date">Date</option>
+      <option value="price">Price</option>
+    </select>
+  </div>
+
+</section>
+
 
   <!-- Shows Section -->
   <section class="py-16">
     <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
 
-        <!-- Dynamic Loop -->
-        <div *ngFor="let show of todayOnlyShows"
-             class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+        <div *ngFor="let show of todayOnlyShows" class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
           <div class="md:flex">
-
             <!-- Image -->
             <div class="md:w-1/2">
-              <img [src]="show.image" [alt]="show.title"
-                   class="w-full h-64 md:h-full object-cover object-top">
+              <img [src]="show.image" [alt]="show.title" class="w-full h-64 md:h-full object-cover object-top">
             </div>
 
             <!-- Content -->
@@ -40,29 +56,22 @@
               <!-- Details -->
               <div class="space-y-3 mb-6">
                 <div class="flex items-center text-gray-700">
-                  <div class="w-5 h-5 flex items-center justify-center mr-3">
-                    <i class="ri-calendar-line text-purple-600"></i>
-                  </div>
+                  <i class="ri-calendar-line text-purple-600 mr-3"></i>
                   <span class="text-sm">{{ show.date }}</span>
                 </div>
                 <div class="flex items-center text-gray-700">
-                  <div class="w-5 h-5 flex items-center justify-center mr-3">
-                    <i class="ri-map-pin-line text-purple-600"></i>
-                  </div>
-                  <span class="text-sm">{{ show.location }}</span>
+                  <i class="ri-map-pin-line text-purple-600 mr-3"></i>
+                  <span class="text-sm">{{ show.city }}, {{ show.block }}</span>
                 </div>
                 <div class="flex items-center text-gray-700">
-                  <div class="w-5 h-5 flex items-center justify-center mr-3">
-                    <i class="ri-ticket-line text-purple-600"></i>
-                  </div>
+                  <i class="ri-ticket-line text-purple-600 mr-3"></i>
                   <span class="text-sm font-semibold">{{ show.price }}</span>
                 </div>
               </div>
 
               <!-- Button -->
               <div class="flex space-x-3">
-                <a *ngIf="show.link"
-                   [href]="show.link"
+                <a *ngIf="show.link" [href]="show.link"
                    class="flex-1 text-white text-center py-3 px-4 rounded-lg font-semibold transition-colors whitespace-nowrap cursor-pointer"
                    [ngClass]="show.buttonClass">
                   {{ show.buttonText }}
@@ -82,3 +91,78 @@
     </div>
   </section>
 </div>
+
+
+<!-- Filter Modal -->
+<div *ngIf="isFilterOpen"
+     (click)="isFilterOpen = false"
+     class="fixed inset-0 z-50 flex items-end justify-center bg-black bg-opacity-50 transition-opacity duration-300">
+
+  <!-- Slide-Up Panel -->
+  <div (click)="$event.stopPropagation()"
+       class="bg-white w-full max-w-lg rounded-t-xl shadow-lg p-6 transform transition-transform duration-500 ease-in-out"
+       [ngClass]="{ 'translate-y-0': isFilterOpen, 'translate-y-full': !isFilterOpen }">
+
+    <!-- Drag Handle -->
+    <div class="w-12 h-1.5 bg-gray-300 rounded-full mx-auto mb-4"></div>
+
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-4">
+      <h3 class="text-xl font-semibold text-gray-800">Filter Shows</h3>
+      <button (click)="isFilterOpen = false"
+              class="text-gray-400 hover:text-gray-600 text-2xl font-bold">&times;</button>
+    </div>
+
+    <!-- Filters -->
+    <div class="space-y-4">
+
+      <!-- City Filter -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1">City</label>
+        <select [(ngModel)]="selectedCity"
+                class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-purple-500">
+          <option value="">All Cities</option>
+          <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+        </select>
+      </div>
+
+      <!-- Block Filter -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1">Block</label>
+        <select [(ngModel)]="selectedBlock"
+                class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-purple-500">
+          <option value="">All Blocks</option>
+          <option *ngFor="let block of blocks" [value]="block">{{ block }}</option>
+        </select>
+      </div>
+
+      <!-- Status Filter -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1">Status</label>
+        <select [(ngModel)]="selectedStatus"
+                class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-purple-500">
+          <option value="">All Status</option>
+          <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="sortBy" class="block text-gray-700 font-medium mb-1">Sort By</label>
+        <select id="sortBy" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-purple-500">
+          <option value="date">Date</option>
+          <option value="price">Price</option>
+        </select>
+      </div>
+
+      <!-- Apply Button -->
+      <div class="flex justify-end mt-4">
+        <button (click)="applyFilters()"
+                class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg font-medium transition-colors">
+          Apply Filters
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+

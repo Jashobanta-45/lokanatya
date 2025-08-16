@@ -1,0 +1,50 @@
+<section class="bg-gradient-to-r from-gray-900 via-indigo-900 to-purple-800 text-white py-20">
+  <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h1 class="text-4xl md:text-6xl font-extrabold mb-6 tracking-wide drop-shadow-lg">
+      All partys
+    </h1>
+    <p class="text-lg md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+    Get ready for the upcoming partyss!
+Witness spectacular performances and storytelling.
+Celebrate the richness of our cultural heritage.
+Plan ahead and enjoy unforgettable experiences!
+    </p>
+  </div>
+</section>
+
+<section class="py-16 bg-gray-50">
+    <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div
+            *ngFor="let partys of partysList"
+            class="group bg-white rounded-tl-2xl rounded-tr-2xl shadow-md overflow-hidden hover:shadow-2xl transition-all duration-300 relative"
+            >
+            <!-- Image with hover zoom -->
+            <div class="overflow-hidden relative">
+                <img
+                [src]="partys.primaryImage"
+                [alt]="partys.gananatya"
+                class="w-full h-64 object-cover object-top transform group-hover:scale-105 transition-transform duration-500"
+                />
+                <div
+                class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                ></div>
+            </div>
+
+            <!-- Content -->
+            <div class="p-4">
+                <h3 class="text-lg font-semibold text-gray-900 mb-2 text-center group-hover:text-purple-600 transition-colors" >
+                {{ partys.location }}
+                </h3>
+
+                <p class="text-red-700 font-bold mb-4 text-center">
+                {{ partys.gananatya }}
+                </p>
+                <div class="flex items-center justify-center">
+                  <a [routerLink]="['/party-details', partys.id]" class="font-medium whitespace-nowrap w-full cursor-pointer bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors text-center">View Details</a>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</section>

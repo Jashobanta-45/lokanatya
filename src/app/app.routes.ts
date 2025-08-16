@@ -3,11 +3,13 @@ import { Routes } from '@angular/router';
 import { Home } from './component/home/home';
 import { RegisterPage } from './component/register-page/register-page';
 import { JatraTicket } from './component/book-ticket/book-ticket';
-import { UpcommingJatra } from './component/upcomming-jatra/upcomming-jatra';
+import { UpcommingShow } from './component/upcomming-show/upcomming-show';
 import { OurMission } from './component/our-mission/our-mission';
 import { Conctact } from './component/conctact/conctact';
 import { Todayshow } from './component/todayshow/todayshow';
+import { AllParty } from './component/all-party/all-party';
 import { Payment } from './component/payment/payment';
+import { PartyDetails } from './component/all-party/party-details/party-details';
 
 
 
@@ -20,7 +22,9 @@ export const routes: Routes = [
       {path:'register',component:RegisterPage},
       {path:'book-ticket',component:JatraTicket},
       {path: 'today-show',component:Todayshow},
-      {path:'upcomming',component:UpcommingJatra},
+      {path:'upcomming-show',component:UpcommingShow},
+      {path:'all-party',component:AllParty},
+      {path:'party-details/:id',component:PartyDetails},
       {path:'our-mission',component:OurMission},
       {path:'contact',component:Conctact},
       {path:'payment',component:Payment},
