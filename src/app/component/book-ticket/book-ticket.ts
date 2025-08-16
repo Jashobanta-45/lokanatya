@@ -151,6 +151,6 @@ confirmBooking() {
     return;
   }
   alert(`You have booked seats: ${this.selectedSeatsDisplay}\nTotal Price: ₹${this.totalPrice}`);
-  this.router.navigate(['/payment1']);
+  this.router.navigate(['/payment']);
 }
 }

@@ -14,14 +14,14 @@ interface Jatra {
 }
 
 @Component({
-  selector: 'app-upcomming-jatra',
+  selector: 'app-upcomming-show',
   imports: [CommonModule,
     RouterModule
   ],
-  templateUrl: './upcomming-jatra.html',
-  styleUrl: './upcomming-jatra.css'
+  templateUrl: './upcomming-show.html',
+  styleUrl: './upcomming-show.css'
 })
-export class UpcommingJatra {
+export class UpcommingShow {
   jatraList: Jatra[] = [
     {
       title: 'Panatkani',
