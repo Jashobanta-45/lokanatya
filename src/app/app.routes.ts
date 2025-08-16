@@ -23,7 +23,7 @@ export const routes: Routes = [
       {path:'about',component:About},
       {path:'contact',component:Conctact},
       {path:'seat-section',component:SeatSection},
-
+      {path:'seat-section',component:SeatSection},
     { path: '**', redirectTo: '' }
 ];
 

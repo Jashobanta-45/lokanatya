@@ -9,56 +9,44 @@
     </div>
 
     <!-- Form -->
-    <form class="space-y-6">
-      <!-- Mobile Number -->
-      <div>
-        <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Mobile Number</label>
-        <div class="relative">
-          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <i class="ri-phone-line text-gray-400 w-5 h-5 flex items-center justify-center"></i>
-          </div>
-          <input
-            id="phone"
-            name="phone"
-            type="tel"
-            inputmode="numeric"
-            pattern="[0-9]{10}"
-            maxlength="10"
-            class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm transition-all"
-            placeholder="Enter your  mobile number"
-            required
-          />
-        </div>
-      </div>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-6">
 
-      <!-- OTP -->
-      <div>
-        <label for="otp" class="block text-sm font-medium text-gray-700 mb-2">OTP</label>
-        <div class="relative">
-          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <i class="ri-lock-line text-gray-400 w-5 h-5 flex items-center justify-center"></i>
-          </div>
-          <input
-            id="otp"
-            class="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm transition-all"
-            placeholder="Enter your OTP"
-            type="tel"
-            inputmode="numeric"
-            maxlength="5"
-            pattern="[0-9]{5}"
-            required
-          />
-          <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer text-gray-400 hover:text-purple-600 transition-colors">
-            <i class="ri-eye-line w-5 h-5 flex items-center justify-center"></i>
-          </button>
-        </div>
-      </div>
+  <!-- Mobile Number -->
+  <div>
+    <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Mobile Number</label>
+    <input
+      id="phone"
+      formControlName="phone"
+      type="tel"
+      maxlength="10"
+      placeholder="Enter your mobile number"
+      class="w-full pl-3 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 text-sm"
+    />
+  </div>
 
-      <!-- Submit -->
-      <button type="submit" class="w-full bg-purple-600 text-white py-3 px-4 rounded-lg hover:bg-purple-700 focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-all font-medium whitespace-nowrap cursor-pointer disabled:opacity-50">
-        Log In
-      </button>
-    </form>
+  <!-- OTP (only visible after request) -->
+  <div *ngIf="otpVisible">
+    <label for="otp" class="block text-sm font-medium text-gray-700 mb-2">OTP</label>
+    <input
+      id="otp"
+      formControlName="otp"
+      type="tel"
+      maxlength="5"
+      placeholder="Enter your OTP"
+      class="w-full pl-3 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 text-sm"
+    />
+  </div>
+
+  <!-- Button changes dynamically -->
+  <button
+    type="submit"
+    class="w-full bg-purple-600 text-white py-3 px-4 rounded-lg hover:bg-purple-700 focus:ring-2 focus:ring-purple-500 transition-all"
+    [disabled]="loginForm.get('phone')?.invalid"
+  >
+    {{ otpVisible ? 'Log In' : 'Request OTP' }}
+  </button>
+</form>
+
 
     <!-- Divider -->
     <div class="mt-6 relative">
