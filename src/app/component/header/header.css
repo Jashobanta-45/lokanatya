@@ -1,0 +1,40 @@
+/* Background gradient animation */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.animate-gradientMove {
+  background-size: 200% 200%;
+  animation: gradientMove 12s ease infinite;
+}
+
+/* Menu slide from left */
+@keyframes slideFromLeft {
+  0% { opacity: 0; transform: translateX(-50px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+.menu-slide {
+  opacity: 0;
+  animation: slideFromLeft 0.8s forwards;
+}
+
+/* Hover underline glow */
+.menu-slide::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 3px;
+  bottom: -6px;
+  left: 0;
+  background: linear-gradient(to right, #8b5cf6, #6366f1);
+  transition: width 0.4s ease;
+  border-radius: 4px;
+}
+.menu-slide:hover {
+  color: #c4b5fd;
+  text-shadow: 0 0 10px rgba(139, 92, 246, 0.7);
+}
+.menu-slide:hover::after {
+  width: 100%;
+}

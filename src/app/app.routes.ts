@@ -7,8 +7,9 @@ import { UpcommingShow } from './component/upcomming-show/upcomming-show';
 import { OurMission } from './component/our-mission/our-mission';
 import { Conctact } from './component/conctact/conctact';
 import { Todayshow } from './component/todayshow/todayshow';
-import { AllCamps } from './component/all-camps/all-camps';
+import { AllParty } from './component/all-party/all-party';
 import { Payment } from './component/payment/payment';
+import { PartyDetails } from './component/all-party/party-details/party-details';
 
 
 
@@ -22,7 +23,8 @@ export const routes: Routes = [
       {path:'book-ticket',component:JatraTicket},
       {path: 'today-show',component:Todayshow},
       {path:'upcomming-show',component:UpcommingShow},
-      {path:'all-camps',component:AllCamps},
+      {path:'all-party',component:AllParty},
+      {path:'party-details/:id',component:PartyDetails},
       {path:'our-mission',component:OurMission},
       {path:'contact',component:Conctact},
       {path:'payment',component:Payment},

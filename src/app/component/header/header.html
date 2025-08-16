@@ -1,36 +1,86 @@
-<header class="bg-black shadow-sm sticky top-0 z-50">
+<header class="bg-black shadow-md sticky top-0 z-50">
   <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
 
-      <!-- Logo (Left) -->
+      <!-- Logo -->
       <div class="flex items-center flex-shrink-0">
-        <a class="text-2xl font-['Pacifico'] text-white hover:text-gray-300 transition-all" href="#">
-          logo
+        <a routerLink="/" class="text-2xl font-pacifico text-white hover:text-purple-400 transition-colors">
+          Logo
         </a>
       </div>
 
-      <!-- Navigation (Center) -->
+      <!-- Desktop Navigation -->
       <nav class="hidden md:flex space-x-8 absolute left-1/2 transform -translate-x-1/2">
-        <a class="text-white hover:text-white transition-colors font-medium whitespace-nowrap cursor-pointer"routerLink="/">Home</a>
-        <a class="text-white hover:text-white transition-colors font-medium whitespace-nowrap cursor-pointer" routerLink="/today-show">Today Show</a>
-        <a class="text-white hover:text-white transition-colors font-medium whitespace-nowrap cursor-pointer" routerLink="/upcomming-show">Upcoming Shows</a>
-        <a class="text-white hover:text-white transition-colors font-medium whitespace-nowrap cursor-pointer" routerLink="/all-camps">All Shows</a>
-        <a class="text-white hover:text-white transition-colors font-medium whitespace-nowrap cursor-pointer" routerLink="/our-mission">Our Mission</a>
-        <a class="text-white hover:text-white transition-colors font-medium whitespace-nowrap cursor-pointer" routerLink="/contact">Contact Us</a>
+        <a routerLink="/" routerLinkActive="border-b" [routerLinkActiveOptions]="{ exact: true }"
+          class="text-white hover:text-white transition-colors font-medium whitespace-nowrap cursor-pointer">Home</a>
+        <a routerLink="/today-show" routerLinkActive="border-b" class="text-white hover:text-white transition-colors font-medium whitespace-nowrap cursor-pointer">Today Show</a>
+        <a routerLink="/upcomming-show" routerLinkActive="border-b" class="text-white hover:text-white transition-colors font-medium whitespace-nowrap cursor-pointer">Upcoming Shows</a>
+        <a routerLink="/all-party" routerLinkActive="border-b" class="text-white hover:text-white transition-colors font-medium whitespace-nowrap cursor-pointer">All Shows</a>
+        <a routerLink="/our-mission" routerLinkActive="border-b" class="text-white hover:text-white transition-colors font-medium whitespace-nowrap cursor-pointer">Our Mission</a>
+        <a routerLink="/contact" routerLinkActive="border-b" class="text-white hover:text-white transition-colors font-medium whitespace-nowrap cursor-pointer">Contact Us</a>
       </nav>
 
-      <!-- Auth Buttons (Right) -->
-      <div class="hidden md:flex space-x-4">
-        <a href="#"
-           class="px-4 py-2 rounded-lg font-medium transition-all whitespace-nowrap bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white shadow-lg hover:shadow-xl" routerLink="register">
+      <!-- Auth Button -->
+      <div class="hidden md:flex">
+        <a routerLink="register"
+          class="px-5 py-2 rounded-xl font-semibold transition-all bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white shadow-md hover:shadow-lg">
           Log In
         </a>
       </div>
 
-      <!-- Mobile Menu Icon -->
-      <button class="md:hidden w-6 h-6 flex items-center justify-center cursor-pointer text-white">
-        <i class="ri-menu-line text-xl"></i>
+      <!-- Mobile Menu Button -->
+      <button (click)="toggleMenu()" class="md:hidden w-10 h-10 flex items-center justify-center text-white focus:outline-none">
+        <i class="ri-menu-line text-2xl"></i>
       </button>
     </div>
   </div>
 </header>
+
+<!-- Fullscreen Overlay Menu -->
+<div
+  class="fixed inset-0 z-50 flex flex-col transform transition-all duration-700 ease-in-out"
+  [ngClass]="{ 'translate-x-0 opacity-100': isMenuOpen, 'translate-x-full opacity-0': !isMenuOpen }"
+>
+  <!-- Background -->
+  <div class="absolute inset-0 bg-gradient-to-br from-black via-purple-900 to-indigo-900 animate-gradientMove"></div>
+  <div class="absolute inset-0 bg-black/40 backdrop-blur-md"></div>
+
+  <!-- Top bar -->
+  <div class="flex justify-between items-center px-6 py-6 relative z-10 border-b border-gray-700">
+    <!-- Login button (top-left) -->
+    <a routerLink="register" (click)="toggleMenu()"
+      class="px-5 py-2 rounded-xl font-semibold bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white shadow-md hover:shadow-lg">
+      Log In
+    </a>
+
+    <!-- Close button (top-right) -->
+    <button (click)="toggleMenu()" class="text-gray-300 hover:text-white transition">
+      <i class="ri-close-line text-4xl"></i>
+    </button>
+  </div>
+
+  <!-- Menu Items -->
+  <nav class="flex flex-col text-lg font-bold text-white relative z-10 px-6 py-6">
+    <a routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }"
+      (click)="toggleMenu()" class="menu-slide py-3">Home</a>
+    <a routerLink="/today-show" routerLinkActive="active-link" (click)="toggleMenu()" class="menu-slide py-3">Today Show</a>
+    <a routerLink="/upcomming-show" routerLinkActive="active-link" (click)="toggleMenu()" class="menu-slide py-3">Upcoming Shows</a>
+    <a routerLink="/all-party" routerLinkActive="active-link" (click)="toggleMenu()" class="menu-slide py-3">All Shows</a>
+    <a routerLink="/our-mission" routerLinkActive="active-link" (click)="toggleMenu()" class="menu-slide py-3">Our Mission</a>
+    <a routerLink="/contact" routerLinkActive="active-link" (click)="toggleMenu()" class="menu-slide py-3">Contact Us</a>
+  </nav>
+
+  <!-- Contact Info & Social Media -->
+  <div class="mt-auto px-6 py-8 text-white relative z-10 border-t border-gray-700 text-center">
+    <p class="text-sm font-medium">📞 +91 98765 43210</p>
+    <p class="text-sm font-medium">✉️ info@example.com</p>
+
+    <!-- Social icons -->
+    <div class="flex space-x-4 mt-4 justify-center">
+      <a href="#" class="text-gray-300 hover:text-white text-2xl transition"><i class="ri-facebook-circle-fill"></i></a>
+      <a href="#" class="text-gray-300 hover:text-white text-2xl transition"><i class="ri-instagram-fill"></i></a>
+      <a href="#" class="text-gray-300 hover:text-white text-2xl transition"><i class="ri-twitter-x-fill"></i></a>
+      <a href="#" class="text-gray-300 hover:text-white text-2xl transition"><i class="ri-youtube-fill"></i></a>
+    </div>
+  </div>
+</div>
