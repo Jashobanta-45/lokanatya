@@ -33,14 +33,14 @@ export class Todayshow {
       status: 'Available',
       statusClass: 'bg-green-800 text-white',
       description: 'A devotional dance-drama based on the life and miracles of Lord Krishna.',
-      date: 'August 16, 2025',
+      date: 'August 17, 2025',
       city: 'Bhadrak',
-      block: 'Bhadrak',
+      block: 'Bont',
       price: '₹250 - ₹600',
       image: 'https://readdy.ai/api/search-image?query=Krishna%20Leela%20Indian%20theater%20poster&width=400&height=300&seq=1',
       link: 'book-ticket',
-      buttonText: 'Event Ended',
-      buttonClass: 'bg-gray-400 cursor-not-allowed'
+      buttonText: 'Book Now',
+      buttonClass: 'bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white shadow-lg hover:shadow-xl'
     },
     {
       title: 'Shiva Tandav',
@@ -48,14 +48,14 @@ export class Todayshow {
       status: 'Available',
       statusClass: 'bg-green-800 text-white',
       description: 'An intense performance depicting the cosmic dance of Lord Shiva.',
-      date: 'August 8, 2025',
-      city: 'Bhadrak',
-      block: 'Bhadrak',
+      date: 'August 17, 2025',
+      city: 'Balasore',
+      block: 'Khaira',
       price: '₹300 - ₹700',
       image: 'https://readdy.ai/api/search-image?query=Shiva%20Tandav%20Indian%20theater%20poster&width=400&height=300&seq=2',
       link: 'book-ticket',
-      buttonText: 'Event Ended',
-      buttonClass: 'bg-gray-400 cursor-not-allowed'
+      buttonText: 'Book Now',
+      buttonClass: 'bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white shadow-lg hover:shadow-xl'
     },
     {
       title: 'Ramayan',
@@ -63,14 +63,14 @@ export class Todayshow {
       status: 'Available',
       statusClass: 'bg-green-800 text-white',
       description: 'A grand theatrical retelling of the Ramayana.',
-      date: 'August 12, 2025',
+      date: 'August 17, 2025',
       city: 'Bhadrak',
       block: 'Bhadrak',
       price: '₹400 - ₹1000',
       image: 'https://readdy.ai/api/search-image?query=Ramayan%20Indian%20theater%20poster&width=400&height=300&seq=3',
       link: 'book-ticket',
-      buttonText: 'Event Ended',
-      buttonClass: 'bg-gray-400 cursor-not-allowed'
+      buttonText: 'Book Now',
+      buttonClass: 'bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white shadow-lg hover:shadow-xl'
     },
     {
       title: 'Meera Bhajan Sandhya',
@@ -78,14 +78,14 @@ export class Todayshow {
       status: 'Available',
       statusClass: 'bg-green-800 text-white',
       description: 'An evening of devotional songs inspired by Meera Bai.',
-      date: 'August 16, 2025',
+      date: 'August 17, 2025',
       city: 'Bhadrak',
       block: 'Bhadrak',
       price: '₹150 - ₹400',
       image: 'https://readdy.ai/api/search-image?query=Meera%20Bhajan%20Sandhya%20Indian%20poster&width=400&height=300&seq=4',
       link: 'book-ticket',
-      buttonText: 'Event Ended',
-      buttonClass: 'bg-gray-400 cursor-not-allowed'
+      buttonText: 'Book Now',
+      buttonClass: 'bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white shadow-lg hover:shadow-xl'
     }
   ];
 

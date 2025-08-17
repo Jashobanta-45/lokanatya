@@ -189,62 +189,32 @@ export class Home implements OnInit, OnDestroy {
     {
       name: 'Suman Behera',
       gananatya: 'Tulasi Gananatya',
-      image: 'assets/actors/suman.jpg'
+      image: 'https://spinride-data.vercel.app/assets/banners/01.jpg'
     },
     {
       name: 'Priya Das',
       gananatya: 'Suyaj mandir',
-      image: 'assets/actors/priya.jpg'
+      image: 'https://spinride-data.vercel.app/assets/banners/01.jpg'
     },
     {
       name: 'Ankit Mohanty',
       gananatya: 'Suyaj mandir',
-      image: 'assets/actors/ankit.jpg'
+      image: 'https://spinride-data.vercel.app/assets/banners/01.jpg'
     },
     {
       name: 'Sneha Patnaik',
       gananatya: 'Suyaj mandir',
-      image: 'assets/actors/sneha.jpg'
+      image: 'https://spinride-data.vercel.app/assets/banners/01.jpg'
     },
     {
       name: 'Amit Kumar',
       gananatya: 'Supporting Actor',
-      image: 'assets/actors/amit.jpg'
+      image: 'https://spinride-data.vercel.app/assets/banners/01.jpg'
     },
     {
       name: 'Akshay Kumar',
       gananatya: 'Supporting Actor',
-      image: 'assets/actors/akshay.jpg'
-    },
-    {
-      name: 'Amitabh Bachchan',
-      gananatya: 'Supporting Actor',
-      image: 'assets/actors/amitabh.jpg'
-    },
-    {
-      name: 'Ranbir Kapoor',
-      gananatya: 'Supporting Actor',
-      image: 'assets/actors/ranbir.jpg'
-    },
-    {
-      name: 'Deepika Padukone',
-      gananatya: 'Supporting Actress',
-      image: 'assets/actors/deepika.jpg'
-    },
-    {
-      name: 'Salman Khan',
-      gananatya: 'Supporting Actor',
-      image: 'assets/actors/salman.jpg'
-    },
-    {
-      name: 'Shahrukh Khan',
-      gananatya: 'Supporting Actor',
-      image: 'assets/actors/shahrukh.jpg'
-    },
-    {
-      name: 'Kareena Kapoor',
-      gananatya: 'Supporting Actress',
-      image: 'assets/actors/kareena.jpg'
+      image: 'https://spinride-data.vercel.app/assets/banners/01.jpg'
     }
   ];
 }
